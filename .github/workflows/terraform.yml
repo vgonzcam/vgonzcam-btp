@@ -52,6 +52,11 @@ on:
 permissions:
   contents: read
 
+env:
+  # Credentials used by the Terraform script
+  BTP_USERNAME: ${{ secrets.BTP_USERNAME }}
+  BTP_PASSWORD: ${{ secrets.BTP_PASSWORD }}
+
 jobs:
   terraform:
     name: 'Terraform'
@@ -90,4 +95,7 @@ jobs:
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false
+      run: | 
+            export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
+            export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
+            terraform apply -auto-approve -input=false
