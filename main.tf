@@ -32,7 +32,6 @@ provider "btp" {
   globalaccount = "c2d80553trial-ga"
 }
 
-
 # An example resource that does nothing.
 resource "null_resource" "example" {
   triggers = {
