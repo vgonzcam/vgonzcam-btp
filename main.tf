@@ -30,6 +30,8 @@ terraform {
 
 provider "btp" {
   globalaccount = "c2d80553trial-ga"
+  username      = "btp_username"
+  password      = "btp_password"
 }
 
 
