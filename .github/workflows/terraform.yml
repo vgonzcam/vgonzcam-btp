@@ -49,11 +49,6 @@ on:
     branches: ["main"]
   pull_request:
 
-env:
-  # Credentials used by the Terraform script
-  BTP_USERNAME: ${{ secrets.BTP_USERNAME }}
-  BTP_PASSWORD: ${{ secrets.BTP_PASSWORD }}
-
 jobs:
   terraform:
     name: "Terraform"
@@ -86,7 +81,9 @@ jobs:
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        run: 
+        run: |
+          export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
+          export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
           terraform plan
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
