@@ -44,6 +44,6 @@ resource "null_resource" "example" {
 data "btp_directories" "all" {}
 
 output "btp_directories-all" {
-  value = btp_directories.all
+  value = data.btp_directories.all
 }
 
