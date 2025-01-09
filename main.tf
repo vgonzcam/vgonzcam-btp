@@ -1,15 +1,5 @@
 # The configuration for the `remote` backend.
 terraform {
-  backend "remote" {
-    # The name of your Terraform Cloud organization.
-    organization = "vgonzcam-btp"
-
-    # The name of the Terraform Cloud workspace to store Terraform state files in.
-    workspaces {
-      name = "vgonzcam-btp"
-    }
-  }
-
   #   backend "remote" {
   #     # The name of your Terraform Cloud organization.
   #     organization = "vgonzcam-btp"
@@ -19,13 +9,17 @@ terraform {
   #       name = "vgonzcam-btp"
   #     }
   #   }
-  
-  #   cloud {
-  #     organization = "vgonzcam-btp"
-  #     workspaces {
-  #       name = "vgonzcam-btp"
-  #     }
-  #   }
+
+
+  cloud {
+
+    organization = "vgonzcam-btp"
+
+    workspaces {
+      name = "vgonzcam-btp"
+    }
+
+  }
   required_providers {
     btp = {
       source  = "SAP/btp"
